@@ -26,5 +26,12 @@ def search_users(args):
     """
 
     # Implement search here!
-
-    return USERS
+    output = []
+    for key in args.keys():
+        for user_data in USERS:
+            if (key == 'id' and args[key] == user_data[key]) or \
+               (key in ['name', 'occupation'] and args[key] in user_data[key]) or \
+               (key == 'age' and int(args[key]) >= int(user_data[key]) - 1  and int(args[key]) <= int(user_data[key]) + 1):
+                output.append(user_data)
+ 
+    return output
